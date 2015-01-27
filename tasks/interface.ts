@@ -1,9 +1,14 @@
-﻿interface IThunderStoneConfig {
+﻿"use strict";
+interface IThunderStoneConfig {
     html: string[];
-    less: string[];
+    css: string[];
     output: string;
 }
 
 interface IHtmlFile {
-    
+}
+
+interface ICssFile {
+    selectors: string[];
+    relativePath:string;
 }

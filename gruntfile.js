@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         },
         typescript: {
             tasks: {
-                src: ['tasks/thunderstone.ts'],
+                src: ['tasks/*.ts'],
                 dest: '.',
                 options: {
                     module: 'commonjs', //or commonjs
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         },
         thunderstone: {
             html: ["example/*.html"],
-            less: ["example/*.less"],
+            css: ["example/*.css"],
             output:"thunderstone.html"
         }
     });
@@ -49,7 +49,7 @@ module.exports = function (grunt) {
 
     var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");
     if (doesThunderStoneExists) {
-        require("./tasks/thunderstone.js")(grunt);
+        require("./tasks/thunderstone.js")();
         grunt.registerTask("thunder", ["thunderstone"]);
     } else {
         console.log("Couldn't load thunderstone, please compile first");
