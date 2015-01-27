@@ -6,9 +6,12 @@ interface IThunderStoneConfig {
 }
 
 interface IHtmlFile {
+    relativePath: string;
+    content: string;
+    foundSelectors:string[];
 }
 
 interface ICssFile {
     selectors: string[];
-    relativePath:string;
+    relativePath: string;
 }

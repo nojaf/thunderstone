@@ -5,6 +5,7 @@
 import cheerio = require("cheerio");
 import grunt = require("grunt");
 import cssProcessor = require("./cssProcessor");
+import htmlProcessor = require("./htmlProcessor");
 
 module.exports = () => {
     grunt.registerTask("thunderstone",
@@ -19,5 +20,7 @@ function thunderstone() {
     console.log(config);
     var cssFiles: ICssFile[] = cssProcessor.loadCssFiles(config.css);
     console.log(cssFiles);
+    var htmlFiles: IHtmlFile[] = htmlProcessor.loadHtmlFiles(config.html);
+    console.log(htmlFiles);
 }
 
