@@ -20,6 +20,7 @@
     "grunt-open": "^0.2.3",
     "grunt-typescript": "^0.6.1",
     "less": "^2.2.0",
-    "typescript": "^1.4.1"
+    "typescript": "^1.4.1",
+    "underscore": "^1.7.0"
   }
 }

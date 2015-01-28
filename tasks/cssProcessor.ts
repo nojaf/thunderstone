@@ -1,5 +1,6 @@
 ﻿import grunt = require("grunt");
 import css = require("css");
+import path = require("path");
 export function loadCssFiles(patterns:string[]):ICssFile[] {
     var cssPaths: string[] = grunt.file.expand(patterns);
     var cssFiles: ICssFile[] = [];
@@ -9,12 +10,13 @@ export function loadCssFiles(patterns:string[]):ICssFile[] {
     return cssFiles;
 }
 
-function parseCssFile(path: string): ICssFile {
-    var cssContent: string = grunt.file.read(path);
+function parseCssFile(cssPath: string): ICssFile {
+    var cssContent: string = grunt.file.read(cssPath);
     var cssObject: css.ICss = css.parse(cssContent);
     var cssFile: ICssFile = {
-        relativePath: path,
-        selectors:getSelectorsFromCssObject(cssObject)
+        relativePath: cssPath,
+        selectors: getSelectorsFromCssObject(cssObject),
+        fileName: path.basename(cssPath)
     };
     return cssFile;
 }

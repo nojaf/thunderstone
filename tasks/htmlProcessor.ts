@@ -12,7 +12,7 @@ function loadHtmlFile(path:string): IHtmlFile {
     var htmlFile: IHtmlFile = {
         relativePath: path,
         content: grunt.file.read(path),
-        foundSelectors: []
+        selectorResults:[]
     };
     return htmlFile;
 }
