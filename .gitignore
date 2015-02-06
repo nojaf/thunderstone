@@ -3,3 +3,6 @@ tasks/*.js
 typings
 example/*.css
 example/*.map
+reports/
+tests/specs/*.js
+tests/specs/*.map

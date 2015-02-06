@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         },
         watch: {
             all: {
-                files: ["example/style.less", "tasks/*.ts"],
+                files: ["example/style.less", "tasks/*.ts", "tests/specs/*.ts"],
                 tasks: ["less:dev", "typescript:tasks"]
             }
         },
@@ -22,12 +22,12 @@ module.exports = function (grunt) {
         },
         typescript: {
             tasks: {
-                src: ['tasks/*.ts'],
-                dest: '.',
+                src: ["tasks/*.ts", "tests/specs/*.ts"],
+                dest: ".",
                 options: {
-                    module: 'commonjs', //or commonjs
-                    target: 'es5', //or es3
-                    basePath: '.',
+                    module: "commonjs", //or commonjs
+                    target: "es5", //or es3
+                    basePath: ".",
                     sourceMap: false,
                     declaration: false
                 }
@@ -37,15 +37,35 @@ module.exports = function (grunt) {
             html: ["example/*.html"],
             css: ["example/*.css"],
             output:"thunderstone.html"
+        },
+        jasmine_node: {
+            options: {
+                forceExit: true,
+                match: '.',
+                matchall: false,
+                extensions: "js",
+                specNameMatcher: "spec",
+                jUnit: {
+                    report: true,
+                    savePath: "./reports/",
+                    useDotNotation: true,
+                    consolidate: true
+                }
+            },
+            all: ["tests/specs/"]
         }
     });
 
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-open");
-    grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks("grunt-typescript");
+    grunt.loadNpmTasks('grunt-jasmine-node');
+
+
     grunt.registerTask("develop", ["watch:all"]);
     grunt.registerTask("default", []);
+    grunt.registerTask("tests", ["jasmine_node"]);
 
     var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");
     if (doesThunderStoneExists) {
