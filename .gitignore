@@ -6,3 +6,4 @@ reports/
 tests/specs/*.js
 tests/specs/*.map
 results/
+npm-debug.log
