@@ -60,11 +60,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-open");
     grunt.loadNpmTasks("grunt-typescript");
-    grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.loadNpmTasks("grunt-jasmine-node");
 
 
     grunt.registerTask("develop", ["watch:all"]);
-    grunt.registerTask("default", []);
     grunt.registerTask("tests", ["jasmine_node"]);
 
     var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");

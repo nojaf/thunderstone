@@ -1,4 +1,5 @@
-﻿/// <reference path="../typings/tsd.d.ts" />
+﻿/// <reference path="interface.ts" />
+/// <reference path="../typings/tsd.d.ts" />
 import cheerio = require("cheerio");
 import _ = require("underscore");
 
