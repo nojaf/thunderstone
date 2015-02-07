@@ -17,9 +17,16 @@ function parseCssFile(cssPath: string): ICssFile {
         relativePath: cssPath,
         selectors: getSelectorsFromCssObject(cssObject),
         fileName: path.basename(cssPath),
-        usageResults:[]
+        usageResults: [],
+        id: createID(path.basename(cssPath))
     };
     return cssFile;
+}
+
+function createID(fileName: string): string {
+    return fileName.toLowerCase()
+        .replace(/[^a-zA-Z0-9-_]+/g, '-')
+        .replace(/^-+|\n|-+$/g, '');
 }
 
 function getSelectorsFromCssObject(cssObject:css.ICss):string[] {

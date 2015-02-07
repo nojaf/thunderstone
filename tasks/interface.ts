@@ -2,13 +2,15 @@
 interface IThunderStoneConfig {
     html: string[];
     css: string[];
-    output: string;
+    outputDir: string;
 }
 
 interface IHtmlFile {
     relativePath: string;
+    fileName: string;
     content: string;
-    selectorResults?:ISelectorResult[];
+    selectorResults?: ISelectorResult[];
+    id: string;
 }
 
 interface ISelectorResult {
@@ -21,6 +23,7 @@ interface ICssFile {
     relativePath: string;
     fileName: string;
     usageResults: IHtmlUsageResult[];
+    id: string;
 }
 
 interface IHtmlUsageResult {

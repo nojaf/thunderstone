@@ -36,7 +36,7 @@ module.exports = function (grunt) {
         thunderstone: {
             html: ["example/*.html"],
             css: ["example/*.css"],
-            output:"thunderstone.html"
+            outputDir: "results/"
         },
         jasmine_node: {
             options: {

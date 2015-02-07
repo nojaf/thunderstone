@@ -7,13 +7,16 @@ describe("thundestone processor tests",(): void => {
         var htmlFiles: IHtmlFile[] = [{
             content: "<html><head><link href='test.css' rel='stylesheet' /></head><body><h1>My title</h1></body><html>",
             relativePath: "",
-            selectorResults:[]
+            selectorResults: [],
+            fileName: "index.html",
+            id:""
         }];
         var cssFiles: ICssFile[] = [{
             fileName: "test.css",
             relativePath: "",
             selectors: ["h1"],
-            usageResults:[]
+            usageResults: [],
+            id:""
         }];
         thunderstoneProcessor.parseHtmlFiles(htmlFiles, cssFiles);
 
@@ -25,13 +28,16 @@ describe("thundestone processor tests",(): void => {
             fileName: "test.css",
             relativePath: "",
             selectors: ["h1"],
-            usageResults:[]
+            usageResults: [],
+            id: ""
         }];
 
         var htmlFiles: IHtmlFile[] = [{
             content: "<html><head><link href='test.css' rel='stylesheet' /></head><body><h1>My title</h1></body><html>",
             relativePath: "",
-            selectorResults: []
+            selectorResults: [],
+            fileName: "index.html",
+            id: ""
         }];
 
         thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
@@ -44,13 +50,16 @@ describe("thundestone processor tests",(): void => {
             fileName: "test.css",
             relativePath: "",
             selectors: ["h1"],
-            usageResults: []
+            usageResults: [],
+            id: ""
         }];
 
         var htmlFiles: IHtmlFile[] = [{
             content: "<html><head><link href='test.css' rel='stylesheet' /></head><body><h1>My title</h1><h1>Second h1</h1></body><html>",
             relativePath: "",
-            selectorResults: []
+            fileName: "index.html",
+            selectorResults: [],
+            id: ""
         }];
 
         thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
@@ -63,17 +72,44 @@ describe("thundestone processor tests",(): void => {
             fileName: "test.css",
             relativePath: "",
             selectors: ["h1", "p"],
-            usageResults: []
+            usageResults: [],
+            id: ""
         }];
 
         var htmlFiles: IHtmlFile[] = [{
             content: "<html><head><link href='test.css' rel='stylesheet' /></head><body><h1>My title</h1><p>Content here</p></body><html>",
             relativePath: "",
-            selectorResults: []
+            fileName:"index.html",
+            selectorResults: [],
+            id: ""
         }];
 
         thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
 
         expect(cssFiles[0].usageResults[0].matchingSelectors.length).toBe(2);
+    });
+
+    it("should sort the found selectors alphabetically",(): void => {
+        var cssFiles: ICssFile[] = [{
+            fileName: "test.css",
+            relativePath: "",
+            selectors: ["p","h1"],
+            usageResults: [],
+            id: ""
+        }];
+
+        var htmlFiles: IHtmlFile[] = [{
+            content: "<html><head><link href='test.css' rel='stylesheet' /></head><body><h1>My title</h1><p>Content here</p></body><html>",
+            relativePath: "",
+            fileName: "index.html",
+            selectorResults: [],
+            id: ""
+        }];
+
+        thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
+
+        var firstSelector: string = cssFiles[0].usageResults[0].matchingSelectors[0].selector;
+        var secondSelector: string = cssFiles[0].usageResults[0].matchingSelectors[1].selector;
+        expect(firstSelector < secondSelector).toBeTruthy();
     });
 });

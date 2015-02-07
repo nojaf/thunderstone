@@ -16,6 +16,7 @@ function parseHtmlFile(htmlFile: IHtmlFile, cssFiles: ICssFile[]): void {
     var $ = cheerio.load(htmlFile.content);
     for (var c: number = 0; c < cssFiles.length; c++) {
         parseHtmlFileWithCssFile(htmlFile, cssFiles[c], $);
+        sortHtmlResult(htmlFile);
     }
 }
 
@@ -27,6 +28,17 @@ function parseHtmlFileWithCssFile(htmlFile: IHtmlFile, cssFile: ICssFile, $: Che
         }
     }
 
+}
+
+function sortHtmlResult(htmlFile: IHtmlFile):void {
+    htmlFile.selectorResults = _.sortBy(htmlFile.selectorResults,
+        (result: ISelectorResult) => {
+            result.matchingSelectors = _.sortBy(result.matchingSelectors,
+                (selector: string) => {
+                    return selector;
+                });
+            return result.cssFile.fileName;
+        }); 
 }
 
 function parseHtmlFileWithCssFileAndSelector(htmlFile: IHtmlFile, cssFile: ICssFile, $: CheerioStatic, selector: string) {
@@ -77,6 +89,7 @@ function parseCssFile(cssFile: ICssFile, htmlFiles: IHtmlFile[]): void {
     "use strict";
     for (var i: number = 0; i < htmlFiles.length; i++) {
         parseCssFileWithGivenHtmlFile(cssFile, htmlFiles[i]);
+        sortCssResult(cssFile);
     }
 }
 
@@ -88,6 +101,17 @@ function parseCssFileWithGivenHtmlFile(cssFile: ICssFile, htmlFile: IHtmlFile): 
             parseCssFileWithGivenHtmlFileAndGivenSelector(cssFile, htmlFile,$, cssFile.selectors[s]);
         }
     }
+}
+
+function sortCssResult(cssFile: ICssFile): void {
+    cssFile.usageResults = _.sortBy(cssFile.usageResults,
+        (usage: IHtmlUsageResult) => {
+            usage.matchingSelectors = _.sortBy(usage.matchingSelectors,
+                (htmlSelector: IHtmlCssSelectorMatch) => {
+                    return htmlSelector.selector;
+                });
+            return usage.htmlFile.fileName;
+        });
 }
 
 function parseCssFileWithGivenHtmlFileAndGivenSelector(cssFile: ICssFile, htmlFile: IHtmlFile, $: CheerioStatic, selector: string): void {

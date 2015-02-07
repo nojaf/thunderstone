@@ -5,6 +5,7 @@ import grunt = require("grunt");
 import cssProcessor = require("./cssProcessor");
 import htmlProcessor = require("./htmlProcessor");
 import thunderstoneProcessor = require("./thunderstoneProcessor");
+import outputFileProcessor = require("./outputFileProcessor");
 
 module.exports = () => {
     grunt.registerTask("thunderstone",
@@ -22,7 +23,7 @@ function thunderstone() {
     thunderstoneProcessor.parseHtmlFiles(htmlFiles, cssFiles);
     thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
 
-    console.log(cssFiles[0].usageResults[0]);
+    outputFileProcessor.createByCssOutput(cssFiles, config.outputDir);
 
 }
 

@@ -1,4 +1,5 @@
 ﻿import grunt = require("grunt");
+import path = require("path");
 export function loadHtmlFiles(patterns: string[]): IHtmlFile[]{
     "use strict";
     var htmlPaths: string[] = grunt.file.expand(patterns);
@@ -9,12 +10,20 @@ export function loadHtmlFiles(patterns: string[]): IHtmlFile[]{
     return htmlFiles;
 }
 
-function loadHtmlFile(path: string): IHtmlFile {
+function loadHtmlFile(htmlPath: string): IHtmlFile {
     "use strict";
     var htmlFile: IHtmlFile = {
-        relativePath: path,
-        content: grunt.file.read(path),
-        selectorResults:[]
+        relativePath: htmlPath,
+        fileName: path.basename(htmlPath),
+        content: grunt.file.read(htmlPath),
+        selectorResults: [],
+        id: createID(path.basename(htmlPath))
     };
     return htmlFile;
+}
+
+function createID(fileName: string): string {
+    return fileName.toLowerCase()
+        .replace(/[^a-zA-Z0-9-_]+/g, '-')
+        .replace(/^-+|\n|-+$/g, '');
 }
