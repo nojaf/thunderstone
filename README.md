@@ -1,6 +1,6 @@
 # Thunderstone
 
-The idea of this tool is to generate a report of the used css selectors within html pages.
+Gruntjs tool to generate a report of the used css selectors within html pages.
 
 In your gruntfile:
 
@@ -40,5 +40,4 @@ Run ```grunt build``` to compile the source
 
 ## Tests
 
-After compiling the source
-Run ```grunt tests``` to execute the tests
+After compiling the source, run ```grunt tests``` to execute the tests
