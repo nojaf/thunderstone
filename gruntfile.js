@@ -2,17 +2,10 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
-        less: {
-            dev: {
-                files: {
-                    "example/style.css": "example/style.less"
-                }
-            }
-        },
         watch: {
             all: {
-                files: ["example/style.less", "tasks/*.ts", "tests/specs/*.ts"],
-                tasks: ["less:dev", "typescript:tasks"]
+                files: ["example/style.css", "tasks/*.ts", "tests/specs/*.ts"],
+                tasks: ["typescript:tasks"]
             }
         },
         open: {
@@ -56,7 +49,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-open");
     grunt.loadNpmTasks("grunt-typescript");
@@ -64,7 +56,7 @@ module.exports = function (grunt) {
 
 
     grunt.registerTask("develop", ["watch:all"]);
-    grunt.registerTask("build", ["less:dev", "typescript:tasks"]);
+    grunt.registerTask("build", ["typescript:tasks"]);
     grunt.registerTask("tests", ["jasmine_node"]);
 
     var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");
