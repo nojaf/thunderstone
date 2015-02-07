@@ -42,6 +42,9 @@
 <body>
     <div id="menu">
         <div class="list-group">
+            <div class="list-group-item">
+                <input type="text" class="form-control" placeholder="Filter on selector" />
+            </div>
 			@model.forEach(function(cssFile){
                <a href="#@cssFile.id" class="list-group-item active">@cssFile.fileName</a>
             })
@@ -71,13 +74,14 @@
     <script>
         window.onload = function(){
             hideAll();
-            var menuItems = document.querySelectorAll("#menu .list-group-item");
+            var menuItems = document.querySelectorAll("#menu a");
             for(var i = 0; i<menuItems.length;i++){
                 menuItems[i].onclick = menuItemClicked;
                 if(i === 0){
                     menuItems[i].click();
                 }
             }
+            document.querySelector("input[type=text").onkeyup = filterSelectors;
         };
 
         function hideAll(){
@@ -85,7 +89,7 @@
             for(var i = 0;i<pages.length;i++){
                 pages[i].classList.add("hide");
             }
-            var menuItems = document.querySelectorAll(".active");
+            var menuItems = document.querySelectorAll("a.active");
             for(var i = 0; i<menuItems.length;i++){
                 menuItems[i].classList.remove("active");
             }
@@ -97,6 +101,18 @@
             hideAll();
             document.querySelector(selector).classList.remove("hide");
             e.target.classList.add("active");
+        }
+
+        function filterSelectors(){
+            var query = document.querySelector("input").value;
+            var allSelectors = document.querySelectorAll("#detail .list-group-item");
+            for(var i = 0;i<allSelectors.length;i++){
+                allSelectors[i].classList.add("hide");
+                var text = allSelectors[i].textContent;
+                if(text.indexOf(query) !== -1){
+                     allSelectors[i].classList.remove("hide");
+                }
+            }
         }
     </script>
 </body>
