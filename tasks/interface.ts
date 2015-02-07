@@ -19,5 +19,16 @@ interface ISelectorResult {
 interface ICssFile {
     selectors: string[];
     relativePath: string;
-    fileName:string;
+    fileName: string;
+    usageResults: IHtmlUsageResult[];
+}
+
+interface IHtmlUsageResult {
+    htmlFile: IHtmlFile;
+    matchingSelectors: IHtmlCssSelectorMatch[];
+}
+
+interface IHtmlCssSelectorMatch {
+    selector: string;
+    count: number;
 }

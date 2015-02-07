@@ -64,6 +64,7 @@ module.exports = function (grunt) {
 
 
     grunt.registerTask("develop", ["watch:all"]);
+    grunt.registerTask("build", ["less:dev", "typescript:tasks"]);
     grunt.registerTask("tests", ["jasmine_node"]);
 
     var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");
@@ -71,6 +72,6 @@ module.exports = function (grunt) {
         require("./tasks/thunderstone.js")();
         grunt.registerTask("thunder", ["thunderstone"]);
     } else {
-        console.log("Couldn't load thunderstone, please compile first");
+        console.log("Couldn't load thunderstone, please build first");
     }
 };

@@ -8,7 +8,7 @@ import thunderstoneProcessor = require("./thunderstoneProcessor");
 
 module.exports = () => {
     grunt.registerTask("thunderstone",
-        "Parses html and less files to generate an overview of the used css selectors",
+        "Parses html and css files to generate an overview of the used css selectors",
         thunderstone);
 };
 
@@ -18,8 +18,11 @@ function thunderstone() {
     var config: IThunderStoneConfig = grunt.config.get<IThunderStoneConfig>("thunderstone");
     var cssFiles: ICssFile[] = cssProcessor.loadCssFiles(config.css);
     var htmlFiles: IHtmlFile[] = htmlProcessor.loadHtmlFiles(config.html);
+
     thunderstoneProcessor.parseHtmlFiles(htmlFiles, cssFiles);
-    console.log(htmlFiles[0].selectorResults);
-    console.log(htmlFiles[1].selectorResults);
+    thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
+
+    console.log(cssFiles[0].usageResults[0]);
+
 }
 

@@ -16,7 +16,8 @@ function parseCssFile(cssPath: string): ICssFile {
     var cssFile: ICssFile = {
         relativePath: cssPath,
         selectors: getSelectorsFromCssObject(cssObject),
-        fileName: path.basename(cssPath)
+        fileName: path.basename(cssPath),
+        usageResults:[]
     };
     return cssFile;
 }
