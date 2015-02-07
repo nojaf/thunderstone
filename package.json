@@ -4,7 +4,7 @@
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {
-      "postinstall":"npm install && npm i -g grunt-cli && grunt build && grunt tests"
+      "postinstall":"grunt build"
     },
   "keywords": [
     "html",
