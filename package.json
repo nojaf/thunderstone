@@ -1,10 +1,10 @@
 {
   "name": "thunderstone",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {
-      "postinstall":"npm install && grunt build && grunt tests"
+      "postinstall":"npm install && npm i -g grunt-cli && grunt build && grunt tests"
     },
   "keywords": [
     "html",
