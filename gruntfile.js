@@ -6,6 +6,10 @@ module.exports = function (grunt) {
             all: {
                 files: ["example/style.css", "tasks/*.ts", "tests/specs/*.ts"],
                 tasks: ["typescript:tasks"]
+            },
+            vash:{
+                files:["templates/*.vash"],
+                tasks:["thunder"]
             }
         },
         open: {

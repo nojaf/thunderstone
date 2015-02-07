@@ -10,6 +10,12 @@ export function createByCssOutput(cssFiles: ICssFile[], outputFolder:string): vo
     grunt.file.write(outputFolder + "byCss.html", output);
 }
 
+export function createByHtmlOutput(htmlFiles: IHtmlFile[], outputFolder:string): void {
+    createOutputFolder(outputFolder);
+	var output:string = render("templates/byHtml.vash", htmlFiles);
+	grunt.file.write(outputFolder+ "byHtml.html", output);
+}
+
 function render(templatePath: string, model: any): string {
     var byCssFileTemplate: string = grunt.file.read(templatePath);
     var templateFunction: (model: any) => string = vash.compile(byCssFileTemplate);

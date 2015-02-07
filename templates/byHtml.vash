@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Selector results by css file</title>
@@ -42,23 +42,22 @@
 <body>
     <div id="menu">
         <div class="list-group">
-			@model.forEach(function(cssFile){
-               <a href="#@cssFile.id" class="list-group-item active">@cssFile.fileName</a>
+			@model.forEach(function(htmlFile){
+               <a href="#@htmlFile.id" class="list-group-item active">@htmlFile.fileName</a>
             })
         </div>
     </div>
     <div id="detail">
-        @model.forEach(function(cssFile){
-            <div id="@cssFile.id">
-                @cssFile.usageResults.forEach(function(usage){
+        @model.forEach(function(htmlFile){
+            <div id="@htmlFile.id">
+                @htmlFile.selectorResults.forEach(function(result){
                     <div class="panel panel-default">
-                        <div class="panel-heading">@usage.htmlFile.fileName</div>
+                        <div class="panel-heading">@result.cssFile.fileName</div>
                         <div class="panel-body">
                             <ul class="list-group">
-                                @usage.matchingSelectors.forEach(function(match){
+                                @result.matchingSelectors.forEach(function(match){
                                     <li class="list-group-item">
-                                        @match.selector
-                                         <span class="badge">@match.count</span>
+                                        @match
                                     </li>
                                 })
                             </ul>

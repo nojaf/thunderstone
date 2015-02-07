@@ -24,6 +24,7 @@ function thunderstone() {
     thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
 
     outputFileProcessor.createByCssOutput(cssFiles, config.outputDir);
+    outputFileProcessor.createByHtmlOutput(htmlFiles, config.outputDir);
 
 }
 
