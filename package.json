@@ -4,7 +4,7 @@
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {
-      "tests":"grunt tests"
+      "test":"grunt tests"
     },
   "keywords": [
     "html",

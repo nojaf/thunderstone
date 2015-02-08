@@ -61,7 +61,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask("develop", ["watch:all"]);
     grunt.registerTask("build", ["typescript:tasks"]);
-    grunt.registerTask("tests", ["jasmine_node"]);
+    grunt.registerTask("tests", ["typescript:tasks","jasmine_node"]);
 
     var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");
     if (doesThunderStoneExists) {
