@@ -1,13 +1,14 @@
 ﻿import grunt = require("grunt");
 import css = require("css");
 import path = require("path");
+import _ = require("underscore");
 export function loadCssFiles(patterns:string[]):ICssFile[] {
     var cssPaths: string[] = grunt.file.expand(patterns);
     var cssFiles: ICssFile[] = [];
     for (var i: number = 0; i < cssPaths.length; i++) {
         cssFiles.push(parseCssFile(cssPaths[i]));
     }
-    return cssFiles;
+    return sortCssFiles(cssFiles);
 }
 
 function parseCssFile(cssPath: string): ICssFile {
@@ -36,4 +37,10 @@ function getSelectorsFromCssObject(cssObject:css.ICss):string[] {
         selectors = selectors.concat(rule.selectors);
     }
     return selectors;
+}
+
+function sortCssFiles(cssFiles:ICssFile[]):ICssFile[]{
+    return _.sortBy(cssFiles, (cssFile:ICssFile) => {
+            return cssFile.fileName;
+        });
 }

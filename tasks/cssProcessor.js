@@ -1,13 +1,14 @@
 var grunt = require("grunt");
 var css = require("css");
 var path = require("path");
+var _ = require("underscore");
 function loadCssFiles(patterns) {
     var cssPaths = grunt.file.expand(patterns);
     var cssFiles = [];
     for (var i = 0; i < cssPaths.length; i++) {
         cssFiles.push(parseCssFile(cssPaths[i]));
     }
-    return cssFiles;
+    return sortCssFiles(cssFiles);
 }
 exports.loadCssFiles = loadCssFiles;
 function parseCssFile(cssPath) {
@@ -32,4 +33,9 @@ function getSelectorsFromCssObject(cssObject) {
         selectors = selectors.concat(rule.selectors);
     }
     return selectors;
+}
+function sortCssFiles(cssFiles) {
+    return _.sortBy(cssFiles, function (cssFile) {
+        return cssFile.fileName;
+    });
 }
