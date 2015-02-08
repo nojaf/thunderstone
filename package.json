@@ -1,15 +1,15 @@
 {
   "name": "thunderstone",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {
-      "test":"grunt tests"
-    },
+    "test": "grunt tests"
+  },
   "keywords": [
     "html",
     "css-selectors",
-    "gruntcollection"
+    "gruntplugin"
   ],
   "repository": {
     "type": "git",
@@ -18,17 +18,18 @@
   "author": "Florian Verdonck",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^0.18.0",
-    "css": "^2.1.0",
-    "underscore": "^1.7.0",
-    "vash": "^0.7.12-1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jasmine-node": "^0.2.1",
     "grunt-open": "^0.2.3",
     "grunt-typescript": "^0.6.1",
-    "typescript": "^1.4.1"
+    "cheerio": "^0.18.0",
+    "css": "^2.1.0",
+    "grunt": " ^0.4.5",
+    "typescript": "^1.4.1",
+    "underscore": "^1.7.0",
+    "vash": "^0.7.12-1"
   },
-  "peerDependencies": { 
-     "grunt": " ^0.4.5" 
-   }
+  "peerDependencies": {
+    "grunt": " ^0.4.5"
+  }
 }

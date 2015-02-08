@@ -53,6 +53,7 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadTasks("tasks");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-open");
     grunt.loadNpmTasks("grunt-typescript");
@@ -63,11 +64,4 @@ module.exports = function (grunt) {
     grunt.registerTask("build", ["typescript:tasks"]);
     grunt.registerTask("tests", ["typescript:tasks","jasmine_node"]);
 
-    var doesThunderStoneExists = grunt.file.exists("tasks/thunderstone.js");
-    if (doesThunderStoneExists) {
-        require("./tasks/thunderstone.js")();
-        grunt.registerTask("thunder", ["thunderstone"]);
-    } else {
-        console.log("Couldn't load thunderstone, please build first");
-    }
 };
