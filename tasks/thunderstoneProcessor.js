@@ -20,7 +20,7 @@ function parseHtmlFile(htmlFile, cssFiles) {
 }
 function parseHtmlFileWithCssFile(htmlFile, cssFile, $) {
     "use strict";
-    if ($("link[href~='" + cssFile.fileName + "']").length > 0) {
+    if (doesHtmlReferenceStyleSheet($, cssFile)) {
         for (var s = 0; s < cssFile.selectors.length; s++) {
             parseHtmlFileWithCssFileAndSelector(htmlFile, cssFile, $, cssFile.selectors[s]);
         }
@@ -84,11 +84,14 @@ function parseCssFile(cssFile, htmlFiles) {
 function parseCssFileWithGivenHtmlFile(cssFile, htmlFile) {
     "use strict";
     var $ = cheerio.load(htmlFile.content);
-    if ($("link[href~='" + cssFile.fileName + "']").length > 0) {
+    if (doesHtmlReferenceStyleSheet($, cssFile)) {
         for (var s = 0; s < cssFile.selectors.length; s++) {
             parseCssFileWithGivenHtmlFileAndGivenSelector(cssFile, htmlFile, $, cssFile.selectors[s]);
         }
     }
+}
+function doesHtmlReferenceStyleSheet($, cssFile) {
+    return ($("html").text().indexOf(cssFile.fileName) !== -1) || ($("link[href*='" + cssFile.fileName + "']").length > 0);
 }
 function sortCssResult(cssFile) {
     cssFile.usageResults = _.sortBy(cssFile.usageResults, function (usage) {

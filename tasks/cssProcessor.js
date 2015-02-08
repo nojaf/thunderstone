@@ -30,9 +30,17 @@ function getSelectorsFromCssObject(cssObject) {
     var selectors = [];
     for (var r = 0; r < cssObject.stylesheet.rules.length; r++) {
         var rule = cssObject.stylesheet.rules[r];
-        selectors = selectors.concat(rule.selectors);
+        if (rule.selectors && isValidSelector(rule.selectors)) {
+            selectors = selectors.concat(rule.selectors);
+        }
     }
     return selectors;
+}
+function isValidSelector(selectorPieces) {
+    var selector = selectorPieces.join(" ");
+    var invalidSelectors = [":hover", ":visited", "::-webkit-input-placeholder", "::-moz-placeholder", ":-ms-input-placeholder", ":focus", ":before", ":after", ":active"];
+    var regex = new RegExp(invalidSelectors.join("|"));
+    return !regex.test(selector);
 }
 function sortCssFiles(cssFiles) {
     return _.sortBy(cssFiles, function (cssFile) {

@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             },
             vash:{
                 files:["templates/*.vash"],
-                tasks:["thunder"]
+                tasks:["thunderstone"]
             }
         },
         open: {

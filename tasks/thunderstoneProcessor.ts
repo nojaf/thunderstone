@@ -22,7 +22,7 @@ function parseHtmlFile(htmlFile: IHtmlFile, cssFiles: ICssFile[]): void {
 
 function parseHtmlFileWithCssFile(htmlFile: IHtmlFile, cssFile: ICssFile, $: CheerioStatic): void {
     "use strict";
-    if ($("link[href~='" + cssFile.fileName + "']").length > 0) {
+    if(doesHtmlReferenceStyleSheet($, cssFile)) {
         for (var s: number = 0; s < cssFile.selectors.length; s++) {
             parseHtmlFileWithCssFileAndSelector(htmlFile, cssFile, $, cssFile.selectors[s]);
         }
@@ -96,11 +96,15 @@ function parseCssFile(cssFile: ICssFile, htmlFiles: IHtmlFile[]): void {
 function parseCssFileWithGivenHtmlFile(cssFile: ICssFile, htmlFile: IHtmlFile): void{
     "use strict";
     var $: CheerioStatic = cheerio.load(htmlFile.content);
-    if ($("link[href~='" + cssFile.fileName + "']").length > 0) {
+    if(doesHtmlReferenceStyleSheet($, cssFile)) {
         for (var s: number = 0; s < cssFile.selectors.length; s++) {
             parseCssFileWithGivenHtmlFileAndGivenSelector(cssFile, htmlFile,$, cssFile.selectors[s]);
         }
     }
+}
+
+function doesHtmlReferenceStyleSheet($: CheerioStatic, cssFile:ICssFile):boolean{
+    return ($("html").text().indexOf(cssFile.fileName) !== -1) || ($("link[href*='" + cssFile.fileName + "']").length > 0);
 }
 
 function sortCssResult(cssFile: ICssFile): void {

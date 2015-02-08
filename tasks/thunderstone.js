@@ -11,12 +11,18 @@ module.exports = function () {
 };
 function thunderstone() {
     "use strict";
-    console.log("raichu bitches");
+    console.log("What?");
+    console.log("PIKACHU is evolving!");
     var config = grunt.config.get("thunderstone");
     var cssFiles = cssProcessor.loadCssFiles(config.css);
+    console.log("Found " + cssFiles.length + " css files");
     var htmlFiles = htmlProcessor.loadHtmlFiles(config.html);
+    console.log("Found " + htmlFiles.length + " html files");
     thunderstoneProcessor.parseHtmlFiles(htmlFiles, cssFiles);
+    console.log("Processed html");
     thunderstoneProcessor.parseCssFiles(cssFiles, htmlFiles);
+    console.log("Processed css");
     outputFileProcessor.createByCssOutput(cssFiles, config.outputDir);
     outputFileProcessor.createByHtmlOutput(htmlFiles, config.outputDir);
+    console.log("RAICHU bitches");
 }

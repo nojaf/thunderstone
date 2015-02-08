@@ -34,9 +34,27 @@ function getSelectorsFromCssObject(cssObject:css.ICss):string[] {
     var selectors: string[] = [];
     for (var r: number = 0; r < cssObject.stylesheet.rules.length; r++) {
         var rule: css.IRule = cssObject.stylesheet.rules[r];
-        selectors = selectors.concat(rule.selectors);
+        if(rule.selectors && isValidSelector(rule.selectors)){
+            selectors = selectors.concat(rule.selectors);
+        }
     }
     return selectors;
+}
+
+function isValidSelector(selectorPieces:string[]):boolean{
+    var selector:string = selectorPieces.join(" ");
+    var invalidSelectors:string[] = 
+    [":hover",
+    ":visited",
+    "::-webkit-input-placeholder",
+    "::-moz-placeholder",
+    ":-ms-input-placeholder",
+    ":focus",
+    ":before",
+    ":after",
+    ":active"];
+    var regex = new RegExp(invalidSelectors.join("|"));
+    return !regex.test(selector);
 }
 
 function sortCssFiles(cssFiles:ICssFile[]):ICssFile[]{
