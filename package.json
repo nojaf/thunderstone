@@ -1,6 +1,6 @@
 {
   "name": "thunderstone",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {
@@ -8,7 +8,8 @@
     },
   "keywords": [
     "html",
-    "css-selectors"
+    "css-selectors",
+    "gruntcollection"
   ],
   "repository": {
     "type": "git",
