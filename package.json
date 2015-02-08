@@ -1,10 +1,10 @@
 {
   "name": "thunderstone",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {
-      "tests":"grunt tests"
+      "test":"grunt tests"
     },
   "keywords": [
     "html",
@@ -21,9 +21,7 @@
     "css": "^2.1.0",
     "grunt": "^0.4.5",
     "underscore": "^1.7.0",
-    "vash": "^0.7.12-1"
-  },
-  "devDependencies":{
+    "vash": "^0.7.12-1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jasmine-node": "^0.2.1",
     "grunt-open": "^0.2.3",
