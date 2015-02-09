@@ -1,43 +1,78 @@
 # Thunderstone
 
-Gruntjs tool to generate a report of the used css selectors within html pages.
+> Gruntjs tool to generate a report of the used css selectors within html pages.
 
-In your gruntfile:
+## Getting Started
+This plugin requires Grunt `~0.4.5`
 
-```javascript
-module.exports = function (grunt) {
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON("package.json"),
-        thunderstone: {
-            html: ["example/*.html"],
-            css: ["example/*.css"],
-            outputDir: "results/"
-        }
-    });
-
-    grunt.loadNpmTasks("thunderstone");
-};
+```shell
+npm install thunderstone --save-dev
 ```
 
-## config
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
-### config.html
+```js
+grunt.loadNpmTasks("thunderstone");
+```
 
-Array of html paths to process
+## The "thunderstone" task
 
-### config.css
+### Overview
+In your project's Gruntfile, add a section named `thunderstone` to the data object passed into `grunt.initConfig()`.
 
-Array of css paths to process
+```js
+grunt.initConfig({
+	thunderstone: {
+	    html: ["example/*.html"],
+	    css: ["example/*.css"],
+	    outputDir: "results/"
+	}
+});
+```
 
-### config.outputDir
+### Options
 
-Output directory path
+#### options.html
+Type: `Array of String`
 
-## Build
+Array of html patterns to process
 
-Run ```grunt build``` to compile the source
+#### options.css
+Type: `Array of String`
+
+Array of css patterns to process
+
+### Usage Examples
+
+#### Custom Options
+In this example, the matching html files and css files will be processed. 
+The output will be written in the output folder.
+
+```js
+grunt.initConfig({
+	thunderstone: {
+	    html: ["*.html"],
+	    css: ["*.css"],
+	    outputDir: "output/"
+	}
+});
+```
+
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+## Edit template
+If you want to change the output file templates. Change the **.vash** file in the templates/ folder.
+[Learn more about vash](https://github.com/kirbysayshi/vash)
 
 ## Tests
 
-After compiling the source, run ```grunt tests``` to execute the tests
+Run ```grunt tests``` to execute the tests.
+
+## Release History
+
+### 1.1.0
+
+Finally figured out all the pieces to make the ```grunt.loadNpmTasks("thunderstone")``` working.

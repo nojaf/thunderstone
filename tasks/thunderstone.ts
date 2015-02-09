@@ -15,8 +15,6 @@ module.exports = () => {
 
 function thunderstone() {
     "use strict";
-
-
     console.log("What?")
     console.log("PIKACHU is evolving!");
     var config: IThunderStoneConfig = grunt.config.get<IThunderStoneConfig>("thunderstone");
