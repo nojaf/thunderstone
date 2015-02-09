@@ -1,6 +1,6 @@
 {
   "name": "thunderstone",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Maps the usage of css selectors and html files",
   "directories": {},
   "scripts": {

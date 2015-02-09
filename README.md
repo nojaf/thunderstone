@@ -34,15 +34,20 @@ grunt.initConfig({
 
 ### Options
 
-#### options.html
+#### html
 Type: `Array of String`
 
 Array of html patterns to process
 
-#### options.css
+#### css
 Type: `Array of String`
 
 Array of css patterns to process
+
+#### outputDir
+Type: `String`
+
+Relative folder path to save the results
 
 ### Usage Examples
 
